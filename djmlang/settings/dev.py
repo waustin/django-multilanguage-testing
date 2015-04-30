@@ -4,11 +4,11 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 # CACHE CONFIG
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-    }
-}
+# CACHES = {
+#    'default': {
+#        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+#    }
+#}
 
 # DJANGO DEBUG TOOLBAR
 #MIDDLEWARE_CLASSES += (

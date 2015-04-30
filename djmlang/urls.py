@@ -14,6 +14,11 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 ]
 
+# if 'rosetta' in settings.INSTALLED_APPS:
+#    urlpatterns += [
+#        url(r'^rosetta/', include('rosetta.urls')),
+#    ]
+
 # UPLOAD MEDIA IN DEBUG
 if settings.DEBUG:
     from django.conf.urls.static import static
