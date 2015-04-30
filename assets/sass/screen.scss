@@ -1,0 +1,33 @@
+@import "partials/base";
+
+.lang-meta-footer {
+    @extend %wrapper;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: $LIGHT_GREY;
+    border-top: 2px solid $MEDIUM_GREY;
+}
+
+.lang-header {
+    @extend %wrapper;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: $LIGHT_GREY;
+    border-bottom: 2px solid $MEDIUM_GREY;
+    select {
+        margin-bottom: 10px;
+        @include font-size(1.6);
+        width: 100%;
+    }
+    form {
+        max-width: 300px;
+    }
+}
+
+.main-content-wrapper {
+    @extend %wrapper;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+@import "partials/form";

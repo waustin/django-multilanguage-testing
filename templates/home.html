@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load i18n %}
+    <h2>This is the home page</h2>
+    <p>
+    {# Translators: Home Page Copy #}
+    {% blocktrans %}
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Nihil eveniet quasi quas tempora natus quis magnam velit accusantium cumque!
+        Adipisci dolores consequuntur nobis provident vitae quos rerum id, laudantium asperiores.
+    {% endblocktrans %}
+    </p>    
+{% endblock content %}
+
