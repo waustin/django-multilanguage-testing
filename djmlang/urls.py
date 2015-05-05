@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
 
     # url(r'^blog/', include('blog.urls')),
-
+    url(r'^pages/', include('pages.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 
     url(r'^admin/', include(admin.site.urls)),

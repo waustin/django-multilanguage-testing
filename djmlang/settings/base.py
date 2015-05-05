@@ -37,14 +37,18 @@ import dj_database_url
 DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'modeltranslation',
+    'django.contrib.admin',
 #    'rosetta',
+
+    'mptt',
+    'pages',
 )
 
 
@@ -182,5 +186,8 @@ LANGUAGES = (
     ('en', _('English')),
     ('es', _('Spanish')),
 )
+
+# MODEL TRANSLATION STUFF
+MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'en'
 
 

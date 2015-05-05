@@ -29,7 +29,7 @@
 
         <script src="{{STATIC_URL}}js/modernizr.custom.74326.js"></script>
 
-        {% comment %} 
+        {% comment %}
             Link site specific js and css here
         {% endcomment %}
         {% block extra_head %}{% endblock extra_head %}
@@ -39,8 +39,8 @@
         <!--[if lt IE 8]>
             <div class="chromeframe">
                     <p>Hi. It looks like you're using an older browser.<br/>
-                    Please <a href="http://browsehappy.com/">upgrade your browser</a> 
-                    or <a href="http://www.google.com/chromeframe/?redirect=true">activate 
+                    Please <a href="http://browsehappy.com/">upgrade your browser</a>
+                    or <a href="http://www.google.com/chromeframe/?redirect=true">activate
                         Google Chrome Frame</a> to improve your experience.
                     </p>
             </div>
@@ -65,16 +65,16 @@
         </header>
         <div class="main-content-wrapper">
             {% block content %}{% endblock content %}
-
-            {% if LANGUAGE_CODE == "es" %}
-                <h3>SPANISH</h3>
-            {% else %}
-                <h3>ENGLISH</h3>
-            {% endif %}
-
         </div>
 
         <footer class="lang-meta-footer">
+
+            {% if LANGUAGE_CODE == "es" %}
+                <h3>SELECTED LANGUAGE: <em>SPANISH</em></h3>
+            {% else %}
+                <h3>SELECTED LANGUAGE: <em>ENGLISH</em></h3>
+            {% endif %}
+
             <h3>Available Languages</h3>
             {% get_available_languages as LANGUAGES %}
             <ul>
