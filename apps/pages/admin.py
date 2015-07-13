@@ -8,11 +8,11 @@ from mptt.admin import MPTTModelAdmin
 from modeltranslation.admin import TranslationAdmin
 
 
-class PageAdminForm(forms.ModelForm):
-    content = forms.CharField(
-        widget=forms.widgets.Textarea(attrs={'class': 'mceEditor',
-                                             'size': '40'}),
-        required=False)
+#class PageAdminForm(forms.ModelForm):
+#    content = forms.CharField(
+#        widget=forms.widgets.Textarea(attrs={'class': 'mceEditor',
+#                                             'size': '40'}),
+#        required=False)
 
 
 class PageAdmin(MPTTModelAdmin, TranslationAdmin):
@@ -23,7 +23,7 @@ class PageAdmin(MPTTModelAdmin, TranslationAdmin):
     list_display = ('title', 'relative_url', 'template', 'is_hidden')
     list_filter = ('template',)
 
-    form = PageAdminForm
+    # form = PageAdminForm
 
     fieldsets = (
         (None, {
@@ -42,6 +42,14 @@ class PageAdmin(MPTTModelAdmin, TranslationAdmin):
             'fields': ('template', )
         }),
     )
+
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == 'content':
+            kwargs.pop('request', None)
+            kwargs['widget'] = forms.widgets.Textarea(attrs={'class': 'mceEditor',
+                                                             'size': '40'})
+            return db_field.formfield(**kwargs)
+        return super(PageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
     class Media:
         js = (settings.STATIC_URL + 'js/tiny_mce/tiny_mce.js',

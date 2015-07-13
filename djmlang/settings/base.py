@@ -44,8 +44,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'modeltranslation',
+
+    # Grappelli and Filebrowser Admin - must come before the admin
+    'grappelli',
+    'filebrowser',
     'django.contrib.admin',
-#    'rosetta',
 
     'mptt',
     'pages',
@@ -190,4 +193,38 @@ LANGUAGES = (
 # MODEL TRANSLATION STUFF
 MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'en'
 
+# SUPPRESS FACTORY BOY LOGGING MESSAGES
+import logging
+logging.getLogger("factory").setLevel(logging.WARN)
 
+# APP SETTINGS
+GRAPPELLI_ADMIN_TITLE = 'Translation Website Admin'
+
+
+# FILEBROWSER SETTINGS
+FILEBROWSER_DEBUG = True
+FILEBROWSER_DIRECTORY = ''
+
+FILEBROWSER_NORMALIZE_FILENAME = True
+
+# Allow FileBrowser Extensions
+FILEBROWSER_EXTENSIONS = {
+    'Folder': [''],
+    'Image': ['.jpg', '.jpeg', '.gif', '.png'],
+    'Document': ['.pdf', '.txt', '.doc', '.rtf', '.xls'],
+    'Audio': ['.mp3'],
+    'Video': ['.mp4']
+}
+
+FILEBROWSER_VERSIONS = {
+    'admin_thumbnail': {'verbose_name': 'Admin Thumbnail', 'width': 60, 'height': 60, 'opts': 'crop upscale'},
+    'thumbnail': {'verbose_name': 'Thumbnail (100px) Square', 'width': 100, 'height': '100', 'opts': 'crop'},
+    'small': {'verbose_name': 'Small (150px Wide)', 'width': 150, 'height': '', 'opts': ''},
+    'medium': {'verbose_name': 'Medium (300px Wide)', 'width': 300, 'height': '', 'opts': ''},
+    'big': {'verbose_name': 'Big (500px Wide)', 'width': 500, 'height': '', 'opts': ''},
+    'large': {'verbose_name': 'Large (700px Wide)', 'width': 700, 'height': '', 'opts': ''},
+    'x-large': {'verbose_name': 'Extra Large (900px Wide)', 'width': 900, 'height': '', 'opts': ''},
+}
+
+# EASY THUMBNAILS
+#THUMBNAIL_SUBDIR = '_thumbs'
