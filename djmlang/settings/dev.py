@@ -1,6 +1,6 @@
 from base import *
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # CACHE CONFIG
@@ -9,6 +9,7 @@ CACHES = {
        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
    }
 }
+ALLOWED_HOSTS = ['*']
 
 # DJANGO DEBUG TOOLBAR
 #MIDDLEWARE_CLASSES += (
@@ -58,4 +59,5 @@ CACHES = {
 # EMAIL CONFIGURATION
 EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
-
+STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+MEDIA_URL =  'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/uploads/'

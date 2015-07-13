@@ -49,7 +49,8 @@ INSTALLED_APPS = (
     'grappelli',
     'filebrowser',
     'django.contrib.admin',
-
+    'django_extensions',
+    'storages',  # storages redux
     'mptt',
     'pages',
 )
@@ -227,4 +228,27 @@ FILEBROWSER_VERSIONS = {
 }
 
 # EASY THUMBNAILS
-#THUMBNAIL_SUBDIR = '_thumbs'
+THUMBNAIL_SUBDIR = '_thumbs'
+
+
+# SWITCH STORAGE TO S3
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+# STATIC FILES S3
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+
+# AWS STUFF - Read from env
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+# For Django extensions sync command
+AWS_BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
+
+AWS_HEADERS = {
+    'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT',
+    'Cache-Control': 'max-age=86400',
+}
+
+SYNC_S3_PREFIX = 'uploads'
