@@ -59,5 +59,27 @@ ALLOWED_HOSTS = ['*']
 # EMAIL CONFIGURATION
 EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
-#STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
-#MEDIA_URL =  'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/uploads/'
+# options
+AWS_PRELOAD_METADATA = True
+AWS_QUERYSTRING_AUTH = False
+
+
+# SWITCH STORAGE TO S3
+#  DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'mystorage.custom_storages.MediaStorage'
+DEFAULT_S3_PATH = 'uploads'
+
+#MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
+MEDIA_ROOT = ''
+
+# STORAGES STUFF
+MEDIAFILES_LOCATION = DEFAULT_S3_PATH
+
+# STATIC FILES S3
+STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
+STATIC_S3_PATH = 'static'
+STATIC_ROOT = "/%s/" % STATIC_S3_PATH
+
+STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + STATIC_S3_PATH + '/'
+MEDIA_URL =  'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + DEFAULT_S3_PATH + '/'
+

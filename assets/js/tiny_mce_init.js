@@ -21,6 +21,7 @@ function CustomFileBrowser(field_name, url, type, win) {
 
 
 
+
 tinyMCE.init({
     mode: "specific_textareas",
     editor_selector : "mceEditor",
