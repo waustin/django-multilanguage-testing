@@ -33,6 +33,9 @@ class PageAdmin(MPTTModelAdmin, TranslationAdmin):
             'classes': ('full-width',),
             'fields': ('content',),
         }),
+        #('Media', {
+        #    'fields': ('new_header_image',),
+        # }),
         ('Meta Information', {
             'classes': ('collapse', 'grp-collapse grp-closed'),
             'fields': ('head_title', 'meta_description')
@@ -43,17 +46,17 @@ class PageAdmin(MPTTModelAdmin, TranslationAdmin):
         }),
     )
 
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        if db_field.name == 'content':
-            kwargs.pop('request', None)
-            kwargs['widget'] = forms.widgets.Textarea(attrs={'class': 'mceEditor',
-                                                             'size': '40'})
-            return db_field.formfield(**kwargs)
-        return super(PageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+    #def formfield_for_dbfield(self, db_field, **kwargs):
+    #    if db_field.name == 'content':
+    #        kwargs.pop('request', None)
+    #        kwargs['widget'] = forms.widgets.Textarea(attrs={'class': 'mceEditor',
+    #                                                         'size': '40'})
+    #        return db_field.formfield(**kwargs)
+    #    return super(PageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
-    class Media:
-        js = (settings.STATIC_URL + 'js/tiny_mce/tiny_mce.js',
-              settings.STATIC_URL + 'js/tiny_mce_init.js')
+    #class Media:
+    #    js = (settings.STATIC_URL + 'js/tiny_mce/tiny_mce.js',
+    #          settings.STATIC_URL + 'js/tiny_mce_init.js')
 
 
 class PageTemplateAdmin(admin.ModelAdmin):

@@ -46,13 +46,14 @@ INSTALLED_APPS = (
     'modeltranslation',
 
     # Grappelli and Filebrowser Admin - must come before the admin
-    'grappelli',
-    'filebrowser',
+   # 'grappelli',
     'django.contrib.admin',
     'django_extensions',
     'storages',  # storages redux
     'mptt',
     'pages',
+    'easy_thumbnails',
+    'redactor',
 )
 
 
@@ -201,41 +202,15 @@ logging.getLogger("factory").setLevel(logging.WARN)
 # APP SETTINGS
 GRAPPELLI_ADMIN_TITLE = 'Translation Website Admin'
 
-
-# FILEBROWSER SETTINGS
-FILEBROWSER_DEBUG = True
-FILEBROWSER_DIRECTORY = ''
-
-FILEBROWSER_NORMALIZE_FILENAME = True
-
-# Allow FileBrowser Extensions
-FILEBROWSER_EXTENSIONS = {
-    'Folder': [''],
-    'Image': ['.jpg', '.jpeg', '.gif', '.png'],
-    'Document': ['.pdf', '.txt', '.doc', '.rtf', '.xls'],
-    'Audio': ['.mp3'],
-    'Video': ['.mp4']
-}
-
-FILEBROWSER_VERSIONS = {
-    'admin_thumbnail': {'verbose_name': 'Admin Thumbnail', 'width': 60, 'height': 60, 'opts': 'crop upscale'},
-    'thumbnail': {'verbose_name': 'Thumbnail (100px) Square', 'width': 100, 'height': '100', 'opts': 'crop'},
-    'small': {'verbose_name': 'Small (150px Wide)', 'width': 150, 'height': '', 'opts': ''},
-    'medium': {'verbose_name': 'Medium (300px Wide)', 'width': 300, 'height': '', 'opts': ''},
-    'big': {'verbose_name': 'Big (500px Wide)', 'width': 500, 'height': '', 'opts': ''},
-    'large': {'verbose_name': 'Large (700px Wide)', 'width': 700, 'height': '', 'opts': ''},
-    'x-large': {'verbose_name': 'Extra Large (900px Wide)', 'width': 900, 'height': '', 'opts': ''},
-}
-
 # EASY THUMBNAILS
 THUMBNAIL_SUBDIR = '_thumbs'
 
 
 # SWITCH STORAGE TO S3
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 # STATIC FILES S3
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+#STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
 # AWS STUFF - Read from env
@@ -247,8 +222,16 @@ AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
 
 AWS_HEADERS = {
-    'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT',
-    'Cache-Control': 'max-age=86400',
+     'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT',
+     'Cache-Control': 'max-age=86400',
 }
 
 SYNC_S3_PREFIX = 'uploads'
+
+
+# APP STUFF
+PAGES_HEADER_IMAGE_DIR = 'pageheaders'
+
+
+REDACTOR_OPTIONS = {'lang': 'en'}
+REDACTOR_UPLOAD = os.path.join(MEDIA_ROOT, 'pages')

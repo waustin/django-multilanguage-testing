@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from django.utils.encoding import smart_text
 
 from mptt.models import MPTTModel, TreeForeignKey
+from redactor.fields import RedactorField
 
 class PageTemplate(models.Model):
     """ Template for a page. Helps to easily customize the page in the admin """
@@ -30,7 +31,7 @@ class Page(MPTTModel):
     parent = TreeForeignKey(
         'self', null=True, blank=True, related_name='children')
 
-    content = models.TextField(blank=True)
+    content = RedactorField(verbose_name='Content')
 
     template = models.ForeignKey(PageTemplate, blank=True, null=True,
                                  help_text='The template used to display this page. If blank the default template is used.')

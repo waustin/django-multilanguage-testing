@@ -4,7 +4,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from filebrowser.sites import site
+#from filebrowser.sites import site
 
 urlpatterns = [
     # Examples:
@@ -13,11 +13,12 @@ urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
 
     url(r'^pages/', include('pages.urls')),
+    url(r'^redactor/', include('redactor.urls')),
 
     # Filebrowser, DJ Admin, & Grappelli
-    url(r'^admin/filebrowser/', include(site.urls)),
+#    url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^grappelli/', include('grappelli.urls')),
+#    url(r'^grappelli/', include('grappelli.urls')),
 ]
 
 # This allows / forces language code to the beginging of these page ursl
