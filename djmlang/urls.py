@@ -7,13 +7,7 @@ from django.views.generic import TemplateView
 from filebrowser.sites import FileBrowserSite
 from mystorage.custom_storages import MediaStorage
 site = FileBrowserSite(name='filebrowser', storage=MediaStorage())
-site.directory = ''
 
-print ' ****** '
-print site.storage.location
-print ' ******'
-print site.storage.location + site.directory
-print '===================='
 urlpatterns = [
     # Examples:
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
