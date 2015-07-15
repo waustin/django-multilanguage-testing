@@ -47,7 +47,6 @@ INSTALLED_APPS = (
 
     # Grappelli and Filebrowser Admin - must come before the admin
     'grappelli',
-    'filebrowser',
     'django.contrib.admin',
     'django_extensions',
     'storages',  # storages redux
@@ -252,6 +251,3 @@ SYNC_S3_PREFIX = 'uploads'
 # APP STUFF
 PAGES_HEADER_IMAGE_DIR = ''
 
-
-REDACTOR_OPTIONS = {'lang': 'en'}
-REDACTOR_UPLOAD = os.path.join(MEDIA_ROOT, 'pages')

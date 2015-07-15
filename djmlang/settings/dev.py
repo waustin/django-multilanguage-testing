@@ -66,11 +66,14 @@ AWS_QUERYSTRING_AUTH = False
 
 # SWITCH STORAGE TO S3
 #  DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-DEFAULT_FILE_STORAGE = 'mystorage.custom_storages.MediaStorage'
+DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
 DEFAULT_S3_PATH = 'uploads'
 
 #MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
-MEDIA_ROOT = ''
+#MEDIA_ROOT = 'uploads'
+
+# MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'uploads')
 
 # STORAGES STUFF
 MEDIAFILES_LOCATION = DEFAULT_S3_PATH
@@ -82,4 +85,14 @@ STATIC_ROOT = "/%s/" % STATIC_S3_PATH
 
 STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + STATIC_S3_PATH + '/'
 MEDIA_URL =  'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + DEFAULT_S3_PATH + '/'
+
+
+REDACTOR_OPTIONS = {'lang': 'en'}
+#REDACTOR_UPLOAD = '../uploads/'
+
+REDACTOR_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+#REDACTOR_UPLOAD_HANDLER = 'redactor.handlers.UUIDUploader'
+
+
+## BOTH S3 and default the abs url is getting used on the file name, not just the file name
 

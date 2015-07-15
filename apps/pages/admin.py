@@ -3,16 +3,18 @@ from django import forms
 from django.conf import settings
 from .models import Page, PageTemplate
 
-
 from mptt.admin import MPTTModelAdmin
 from modeltranslation.admin import TranslationAdmin
 
+#from redactor.widgets import RedactorEditor
+
 
 #class PageAdminForm(forms.ModelForm):
-#    content = forms.CharField(
-#        widget=forms.widgets.Textarea(attrs={'class': 'mceEditor',
-#                                             'size': '40'}),
-#        required=False)
+#    class Meta:
+#        widgets = {
+#            'content_en': RedactorEditor(),
+#            'content_es': RedactorEditor(),
+#        }
 
 
 class PageAdmin(MPTTModelAdmin, TranslationAdmin):
@@ -23,7 +25,7 @@ class PageAdmin(MPTTModelAdmin, TranslationAdmin):
     list_display = ('title', 'relative_url', 'template', 'is_hidden')
     list_filter = ('template',)
 
-    # form = PageAdminForm
+    #form = PageAdminForm
 
     fieldsets = (
         (None, {
@@ -33,9 +35,9 @@ class PageAdmin(MPTTModelAdmin, TranslationAdmin):
             'classes': ('full-width',),
             'fields': ('content',),
         }),
-        ('Media', {
-            'fields': ('header_image',),
-        }),
+        #('Media', {
+        #    'fields': ('header_image',),
+        #}),
         ('Meta Information', {
             'classes': ('collapse', 'grp-collapse grp-closed'),
             'fields': ('head_title', 'meta_description')
@@ -46,17 +48,18 @@ class PageAdmin(MPTTModelAdmin, TranslationAdmin):
         }),
     )
 
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        if db_field.name == 'content':
-            kwargs.pop('request', None)
-            kwargs['widget'] = forms.widgets.Textarea(attrs={'class': 'mceEditor',
-                                                             'size': '40'})
-            return db_field.formfield(**kwargs)
-        return super(PageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+    #def formfield_for_dbfield(self, db_field, **kwargs):
+    #    if db_field.name == 'content':
+    #        kwargs.pop('request', None)
+    #        kwargs['widget'] = forms.widgets.Textarea(attrs={'class': 'mceEditor',
+    #                                                         'size': '40'})
+    #        return db_field.formfield(**kwargs)
+    #    return super(PageAdmin, self).formfield_for_dbfield(db_field, **kwargs)
 
     class Media:
-        js = (settings.STATIC_URL + 'js/tiny_mce/tiny_mce.js',
-              settings.STATIC_URL + 'js/tiny_mce_init.js')
+        pass
+        #js = (settings.STATIC_URL + 'js/tiny_mce/tiny_mce.js',
+        #      settings.STATIC_URL + 'js/tiny_mce_init.js')
 
 
 class PageTemplateAdmin(admin.ModelAdmin):

@@ -4,10 +4,8 @@ from django.utils.text import slugify
 from django.utils.encoding import smart_text
 
 from mptt.models import MPTTModel, TreeForeignKey
-#from redactor.fields import RedactorField
+from redactor.fields import RedactorField
 
-
-from filebrowser.fields import FileBrowseField
 
 class PageTemplate(models.Model):
     """ Template for a page. Helps to easily customize the page in the admin """
@@ -34,7 +32,8 @@ class Page(MPTTModel):
     parent = TreeForeignKey(
         'self', null=True, blank=True, related_name='children')
 
-    content = models.TextField(blank=True)
+    #  content = models.TextField(blank=True)
+    content = RedactorField(verbose_name='content')
 
     template = models.ForeignKey(PageTemplate, blank=True, null=True,
                                  help_text='The template used to display this page. If blank the default template is used.')
@@ -47,12 +46,6 @@ class Page(MPTTModel):
     is_hidden = models.BooleanField(default=False, blank=True,
                                     help_text='Hidden pages do not show up in search or have a valid URL. They are useful for grouping similar pages by a parent page you don\'t want vislbe on the site')
 
-
-    header_image = FileBrowseField(max_length=200,
-                                   blank=True,
-                                   directory=settings.PAGES_HEADER_IMAGE_DIR,
-                                   format='image',
-                                   help_text='Header image for the top of the page.')
 
     def save(self, *args, **kwargs):
         if not self.pk:

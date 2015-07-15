@@ -4,10 +4,6 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from filebrowser.sites import FileBrowserSite
-from mystorage.custom_storages import MediaStorage
-site = FileBrowserSite(name='filebrowser', storage=MediaStorage())
-
 urlpatterns = [
     # Examples:
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
@@ -15,10 +11,9 @@ urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
 
     url(r'^pages/', include('pages.urls')),
-#    url(r'^redactor/', include('redactor.urls')),
+    url(r'^redactor/', include('redactor.urls')),
 
     # Filebrowser, DJ Admin, & Grappelli
-    url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
 ]
